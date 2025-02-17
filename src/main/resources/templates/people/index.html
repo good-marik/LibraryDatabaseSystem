@@ -3,8 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>All People</title>
+	<link rel="stylesheet" href="/css/stylePeople.css">
 </head>
 <body>
+
+	<h2>Registered People</h2>
 
 	<div th:each="person : ${people}">
 		<p />
@@ -19,7 +22,7 @@
 	</form>
 
 	<p />
-	<a href="/">back</a>
+	<a class="back" href="/">back</a>
 
 </body>
 </html>

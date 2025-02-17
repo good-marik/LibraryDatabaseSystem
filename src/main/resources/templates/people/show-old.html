@@ -3,11 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title th:text="${person.getName()}"></title>
-	<link rel="stylesheet" href="/css/stylePeople.css">
 </head>
 <body>
 
-	<h2 th:text="${person.toString()}"></h2> 
+	<strong th:text="${person.toString()}"></strong> 
 	<p th:text="'PersonID: ' + ${person.getId()}" />
 	
 	<strong th:if="${books.isEmpty()}">No books borrowed</strong>
@@ -16,9 +15,8 @@
 		<hr>
 		<strong>Borrowed books:</strong>
 		<div th:each="book : ${books}">
-           <br>
-           <a class="tab1" th:classappend="${book.isExpired()} ? 'expired' : ''" 
-               th:text="${book.toString()}" th:href="@{/books/{id}(id=${book.getId()})}">link</a>
+			<p th:style="${book.isExpired()} ? 'color:red' : 'color:black'" 
+			th:text="${book.toString()}"></p>
 		</div>
 	</div>
 	<hr>
@@ -35,7 +33,7 @@
 	</form>
 	
 	<p/>
-	<a class="back" href="/people">back</a>
+	<a href="/people">back</a>
 
 </body>
 </html>

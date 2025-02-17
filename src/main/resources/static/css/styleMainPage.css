@@ -1,0 +1,47 @@
+/* Dark theme style */
+
+body {
+	background-color: #121212;
+	color: #f0f0f0;
+	font-family: Arial, sans-serif;
+	margin: 20px;
+	padding: 20px;
+}
+
+a {
+	color: #76c7c0;
+	text-decoration: none;
+}
+
+a:hover {
+	color: cyan;
+	font-weight: bold;
+}
+
+strong {
+	color: #ffffff;
+}
+
+p {
+	color: #b0b0b0;
+}
+
+h1 {
+	text-align: center;
+}
+
+table {
+	width: 80%;
+	margin: 20px auto;
+	border-collapse: collapse;
+}
+
+tr {
+	height: 300px;
+}
+
+td {
+	border: 1px solid black;
+	text-align: center;
+	padding: 10px;
+}

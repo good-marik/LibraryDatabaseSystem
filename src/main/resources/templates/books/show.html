@@ -3,13 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title th:text="${book.getTitle()}"></title>
+	<link rel="stylesheet" href="/css/stylePeople.css">
 </head>
 <body>
 
-	<strong th:text="${book.toString}"></strong>
+	<h2 th:text="${book.toString}"></h2>
 	<p th:text="'BookID: ' + ${book.getId()}"/>
+	
 	<div th:if="${owner == null}">
-		<strong style="color:green">This book is available!</strong>
+		<p class="available">This book is available!</p>
 		<p>Assign this book to any person?</p>
 
 		<form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
@@ -22,7 +24,7 @@
 	</div>
 
 	<div th:if="${owner != null}">
-		<p style="color:red">This book is not available.</p>
+		<p class="unavailable">This book is not available.</p>
 		<p th:text="'It is currently with: ' + ${owner.getName()}"/>
 		<form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
 			<button>Release the book!</button>
@@ -41,7 +43,7 @@
 	</form>
 
 	<p/>
-	<a href="/books?sort_by_year=true">back</a>
+	<a class="back" href="/books?sort_by_year=true">back</a>
 
 </body>
 </html>

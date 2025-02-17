@@ -3,27 +3,32 @@
 <head>
 	<meta charset="UTF-8">
 	<title>New person</title>
+	<link rel="stylesheet" href="/css/stylePeople.css">
 </head>
 <body>
 
+	<h2>New Person</h2>
+
 	<form th:method="POST" th:action="@{/people}" th:object="${person}">
-		
-		<label for="name">Enter name: </label> 
-		<input type="text" th:field="*{name}" id="name" />
-		<div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-		<p/>
-		
-		<label for="year">Enter year of birth: </label> 
-		<input type="text" th:field="*{yearOfBirth}" id="year" /> 
-		<div style="color:red" th:if="${#fields.hasErrors('yearOfBirth')}" th:errors="*{yearOfBirth}"></div>
-		<p/> 
-		
-		<button>Add this person to a database</button>
-		
+
+		<label class="regular" for="name">Name: </label> <input type="text"
+			th:field="*{name}" id="name" />
+		<div class="error" th:if="${#fields.hasErrors('name')}"
+			th:errors="*{name}"></div>
+		<p />
+
+		<label class="regular" for="year">Year of birth: </label> <input
+			type="text" th:field="*{yearOfBirth}" id="year" />
+		<div class="error" th:if="${#fields.hasErrors('yearOfBirth')}"
+			th:errors="*{yearOfBirth}"></div>
+		<p />
+
+		<button>Add this person to database</button>
+
 	</form>
-	
-	<p/>
-	<a href="/people">back</a>
-			
+
+	<p />
+	<a class="back" href="/people">back</a>
+
 </body>
 </html>

@@ -1,0 +1,81 @@
+/* Dark theme style */
+
+body {
+	background-color: #121212;
+	color: #f0f0f0;
+	font-family: Arial, sans-serif;
+	margin: 20px;
+	padding: 20px;
+}
+
+strong {
+	color: #ffffff;
+}
+
+h2 {
+	color: white;
+}
+
+hr {
+	border: 1px solid #333;
+}
+
+button {
+	background-color: #1f1f1f;
+	color: #e0e0e0;
+	border: 1px solid #444;
+	padding: 10px 15px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+button:hover {
+	background-color: #333;
+}
+
+.back {
+	color: #76c7c0;
+}
+
+a.back:hover {
+	color: cyan;
+	font-weight: bold;
+}
+
+a {
+	color: #f0f0f0;
+	text-decoration: none;
+}
+
+a:hover {
+	color: yellow;
+	font-weight: bold;
+}
+
+.expired {
+	color: red !important;
+}
+
+.error {
+	color: red;
+}
+
+.regular {
+	color: #f0f0f0;
+}
+
+.available {
+	color: #56f342;
+}
+
+.unavailable {
+	color: red;
+}
+
+.tab1 {
+	margin-left: 30px;
+}
+
+.tab2 {
+	margin-left: 60px;
+}

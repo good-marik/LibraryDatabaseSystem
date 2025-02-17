@@ -3,31 +3,34 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Update book</title>
+	<link rel="stylesheet" href="/css/stylePeople.css">
 </head>
 <body>
+
+	<h2>Edit Book</h2>
 	
 	<form th:method="PATCH" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
 		
-		<label for="titleLabel">Enter title: </label> 
+		<label for="titleLabel">Title: </label> 
 		<input type="text" th:field="*{title}" id="titleLabel" />
-		<div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+		<div class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
 		<p/>
 		
-		<label for="author">Enter author: </label> 
+		<label for="author">Author: </label> 
 		<input type="text" th:field="*{author}" id="author" /> 
-		<div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></div>
+		<div class="error" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></div>
 		<p/>
 		
-		<label for="year">Enter year: </label> 
+		<label for="year">Year: </label> 
 		<input type="text" th:field="*{year}" id="year" /> 
-		<div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
+		<div class="error" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
 		<p/>
 		
-		<button>Update the book</button>
+		<button>Update book</button>
 	</form>
 	
 	<p/>
-	<a th:href="@{/books/{id}(id=${book.getId()})}">back</a>
+	<a class="back" th:href="@{/books/{id}(id=${book.getId()})}">back</a>
 	
 </body>
 </html>

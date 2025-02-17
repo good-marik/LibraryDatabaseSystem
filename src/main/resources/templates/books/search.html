@@ -3,8 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Search</title>
+	<link rel="stylesheet" href="/css/stylePeople.css">
 </head>
 <body>
+
+	<h2>Book Search</h2>
 	
 	<form method="GET" action="/books/search">
 		<label for="title">Enter the title of a book: </label> 
@@ -14,20 +17,20 @@
 	</form>
 	
 	<div th:if="${foundBooks}">
-		<b th:if="${foundBooks.isEmpty()}"> No book were found </b>
+		<b th:if="${foundBooks.isEmpty()}"> No books found </b>
 		<div th:if="${!foundBooks.isEmpty()}"> 
 			<b>Books found:</b>
 			<div th:each="book : ${foundBooks}">
 					<p/>
-					<div th:text="${book.toString()}"></div>
-					<div th:if="${book.getOwner() == null}">Currently free</div>
-					<div th:if="${book.getOwner() != null}" th:text = "${'Currently with: ' + book.getOwner().getName()}"></div>
+					<a class="tab1" th:text="${book.toString()}" th:href="@{/books/{id}(id=${book.getId()})} ">link</a>
+					<div class="available tab2" th:if="${book.getOwner() == null}">available</div>
+					<div class="unavailable tab2" th:if="${book.getOwner() != null}" th:text = "${'not available; it is with: ' + book.getOwner().getName()}"></div>
 			</div>
 		</div>
 		<p/>
 	</div>
 	
-	<a href="/books?sort_by_year=true">back</a>
+	<a class="back" href="/books?sort_by_year=true">back</a>
 
 </body>
 </html>
