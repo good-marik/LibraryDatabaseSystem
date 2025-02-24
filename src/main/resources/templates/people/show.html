@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<title th:text="${person.getName()}"></title>
-	<link rel="stylesheet" href="/css/stylePeople.css">
+<meta charset="UTF-8">
+<title th:text="${person.getName()}"></title>
+<link rel="stylesheet" href="/css/stylePeople.css">
 </head>
 <body>
 
-	<h2 th:text="${person.toString()}"></h2> 
+	<h2 th:text="${person.toString()}"></h2>
 	<p th:text="'PersonID: ' + ${person.getId()}" />
-	
+
 	<strong th:if="${books.isEmpty()}">No books borrowed</strong>
-	
+
 	<div th:if="${!books.isEmpty()}">
 		<hr>
 		<strong>Borrowed books:</strong>
 		<div th:each="book : ${books}">
-           <br>
-           <a class="tab1" th:classappend="${book.isExpired()} ? 'expired' : ''" 
-               th:text="${book.toString()}" th:href="@{/books/{id}(id=${book.getId()})}">link</a>
+			<br>
+			<a class="tab1" th:href="@{/books/{id}(id=${book.getId()})}"
+				th:text="${book.toString()}"></a> <span th:if="${book.isExpired()}"
+				class="expired"> expired</span>
 		</div>
 	</div>
 	<hr>
-	<p/>
+	<p />
 	<form th:method="GET"
 		th:action="@{/people/{id}/edit(id=${person.getId()})}">
 		<button>Edit person</button>
 	</form>
 
-	<p/>
+	<p />
 	<form th:method="DELETE"
 		th:action="@{/people/{id}(id=${person.getId()})}">
 		<button>Delete person</button>
 	</form>
-	
-	<p/>
-	<a class="back" href="/people">back</a>
+
+	<p />
+	<a class="back" href="/people?sort=name">back</a>
 
 </body>
 </html>

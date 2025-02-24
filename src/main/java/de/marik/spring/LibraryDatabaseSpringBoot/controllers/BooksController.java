@@ -34,18 +34,17 @@ public class BooksController {
 	@GetMapping()
 	public String index(@RequestParam(value = "page", required = false) String pageString,
 			@RequestParam(value = "books_per_page", required = false) String booksPerPageString,
-			@RequestParam(value = "sort_by_year", required = false) String sortByYearString, Model model) {
-		boolean sortByYear = Boolean.parseBoolean(sortByYearString);
+			@RequestParam(value = "sort", required = false) String sort, Model model) {
 		if (pageString != null && booksPerPageString != null) {
 			try {
 				int page = Integer.parseInt(pageString);
 				int booksPerPage = Integer.parseInt(booksPerPageString);
-				model.addAttribute("books", booksService.findAll(page, booksPerPage, sortByYear));
+				model.addAttribute("books", booksService.findAll(page, booksPerPage, sort));
 			} catch (Exception e) {
-				model.addAttribute("books", booksService.findAll(sortByYear));
+				model.addAttribute("books", booksService.findAll(sort));
 			}
 		} else {
-			model.addAttribute("books", booksService.findAll(sortByYear));
+			model.addAttribute("books", booksService.findAll(sort));
 		}
 
 		return "books/index";
@@ -55,7 +54,7 @@ public class BooksController {
 	public String show(@PathVariable("magicId") int id, Model model, @ModelAttribute("person") Person person) {
 		model.addAttribute("book", booksService.findOne(id));
 		model.addAttribute("owner", booksService.getOwnerByBookId(id));
-		model.addAttribute("people", peopleService.findAll());
+		model.addAttribute("people", peopleService.findAll("name"));	//sorting people by name
 		return "books/show";
 	}
 

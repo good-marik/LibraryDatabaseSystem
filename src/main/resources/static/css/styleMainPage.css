@@ -31,17 +31,19 @@ h1 {
 }
 
 table {
+	border: none;
 	width: 80%;
 	margin: 20px auto;
 	border-collapse: collapse;
 }
 
 tr {
+ 	border: none;
 	height: 300px;
 }
 
 td {
-	border: 1px solid black;
+	border: none;
 	text-align: center;
 	padding: 10px;
 }

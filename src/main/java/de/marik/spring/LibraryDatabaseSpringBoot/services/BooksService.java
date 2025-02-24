@@ -32,16 +32,23 @@ public class BooksService {
 		return booksRepository.findAll();
 	}
 
-	public List<Book> findAll(int page, int booksPerPage, boolean isSorting) {
-		return booksRepository.findAll(PageRequest.of(page, booksPerPage, this.getSort(isSorting))).getContent();
+	public List<Book> findAll(int page, int booksPerPage, String sort) {
+		return booksRepository.findAll(PageRequest.of(page, booksPerPage, getSort(sort))).getContent();
 	}
 
-	public List<Book> findAll(boolean isSorting) {
-		return booksRepository.findAll(this.getSort(isSorting));
+	public List<Book> findAll(String sort) {
+		return booksRepository.findAll(getSort(sort));
 	}
-	
-	private Sort getSort(boolean isSorting) {
-		return isSorting ? Sort.by("year") : Sort.unsorted();
+
+	private Sort getSort(String sort) {
+		if (sort == null)
+			return Sort.unsorted();
+		String sortLowCase = sort.toLowerCase();
+		if (sortLowCase.equals("year") || sortLowCase.equals("title") || sortLowCase.equals("author")) {
+			return Sort.by(sort);
+		} else {
+			return Sort.unsorted(); // no sorting
+		}
 	}
 
 	public Book findOne(int id) {

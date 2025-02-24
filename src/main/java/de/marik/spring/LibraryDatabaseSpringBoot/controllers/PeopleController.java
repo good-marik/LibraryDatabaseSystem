@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import de.marik.spring.LibraryDatabaseSpringBoot.models.Person;
 import de.marik.spring.LibraryDatabaseSpringBoot.services.BooksService;
@@ -33,8 +34,8 @@ public class PeopleController {
 	}
 
 	@GetMapping()
-	public String index(Model model) {
-		model.addAttribute("people", peopleService.findAll());
+	public String index(@RequestParam(value = "sort", required = false) String sort, Model model) {
+		model.addAttribute("people", peopleService.findAll(sort));
 		return "people/index";
 	}
 

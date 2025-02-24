@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<title th:text="${book.getTitle()}"></title>
-	<link rel="stylesheet" href="/css/stylePeople.css">
+<meta charset="UTF-8">
+<title th:text="${book.getTitle()}"></title>
+<link rel="stylesheet" href="/css/stylePeople.css">
 </head>
 <body>
 
 	<h2 th:text="${book.toString}"></h2>
-	<p th:text="'BookID: ' + ${book.getId()}"/>
-	
+	<p th:text="'BookID: ' + ${book.getId()}" />
+
 	<div th:if="${owner == null}">
 		<p class="available">This book is available!</p>
-		<p>Assign this book to any person?</p>
+		<p>Assign this book to anybody?</p>
 
-		<form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
-			<label for="person">Choose a person: </label>
-			<select th:object="${person}" th:field="*{id}" id="person">
-				<option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getName()}"></option>
+		<form th:method="PATCH"
+			th:action="@{/books/{id}/assign(id=${book.getId()})}">
+			<label for="person">Choose a person: </label> <select
+				th:object="${person}" th:field="*{id}" id="person">
+				<option th:each="person : ${people}" th:value="${person.getId()}"
+					th:text="${person.getName()}"></option>
 			</select>
 			<button>Assign the book</button>
 		</form>
@@ -25,25 +27,30 @@
 
 	<div th:if="${owner != null}">
 		<p class="unavailable">This book is not available.</p>
-		<p th:text="'It is currently with: ' + ${owner.getName()}"/>
-		<form th:method="PATCH" th:action="@{/books/{id}/release(id=${book.getId()})}">
+		<p>
+			<span>It is currently with: </span> <a th:text="${owner.getName()}"
+				th:href="@{/people/{id}(id=${owner.getId()})}"></a>
+		</p>
+		<form th:method="PATCH"
+			th:action="@{/books/{id}/release(id=${book.getId()})}">
 			<button>Release the book!</button>
 		</form>
 	</div>
 
 	<hr>
-	<p/>
-	<form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
+	<p />
+	<form th:method="GET"
+		th:action="@{/books/{id}/edit(id=${book.getId()})}">
 		<button>Edit book</button>
 	</form>
 
-	<p/>
+	<p />
 	<form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
 		<button>Delete book</button>
 	</form>
 
-	<p/>
-	<a class="back" href="/books?sort_by_year=true">back</a>
+	<p />
+	<a class="back" href="/books?sort=title">back</a>
 
 </body>
 </html>
