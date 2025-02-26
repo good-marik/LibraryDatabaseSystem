@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 	@GetMapping({"/", "home"})
 	public String homePage() {
-		System.out.println("--- in Controller now ---");
-		return "home";
+		return "home";	//no slash for production!
 	}
 }
