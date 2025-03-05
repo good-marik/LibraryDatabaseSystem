@@ -106,7 +106,7 @@ public class BooksController {
 
 	@GetMapping("/search")
 	public String search(@RequestParam(value = "title", required = false) String title, Model model) {
-		if (title != null)
+		if (title != null && !title.isEmpty())
 			model.addAttribute("foundBooks", booksService.searchForBookByTitle(title));
 		return "books/search";
 	}
