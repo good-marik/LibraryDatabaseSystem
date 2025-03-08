@@ -14,31 +14,29 @@ import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "Book")
 public class Book {
 	@Id
-//	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@NotEmpty(message = "The title should not be empty")
-	@Size(min = 1, max = 100, message = "The title should be between 1 and 100 characters")
-//	@Column(name = "title")
+	@NotBlank(message = "The title should not be empty")
+	@Size(max = 100, message = "The title should be between 1 and 100 characters")
 	private String title;
 	
-	@NotEmpty(message = "The author should not be empty")
-	@Size(min = 1, max = 100, message = "The author should be between 1 and 100 characters")
-//	@Column(name = "author")
+	@NotBlank(message = "The author should not be empty")
+	@Size(max = 100, message = "The author should be between 1 and 100 characters")
 	private String author;
 	
+	@NotNull(message = "The year should not be empty")
 	@Min(value = 0, message = "The year should not be negative")
 	@Max(value = 2100, message = "The year should not be greater than 2100")
-//	@Column(name = "year")
-	private int year;
+	private Integer year;
 	
 //	@Column(name = "borrowed_at")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -54,7 +52,7 @@ public class Book {
 	public Book() {
 	}
 	
-	public Book(Integer ownerId, String title, String author, int year) {
+	public Book(Integer ownerId, String title, String author, Integer year) {
 		this.title = title;
 		this.author = author;
 		this.year = year;
@@ -84,11 +82,11 @@ public class Book {
 		this.author = author;
 	}
 
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
 
-	public void setYear(int year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 
@@ -120,6 +118,5 @@ public class Book {
 	public String toString() {
 		return title + ", " + author + ", " + year;
 	}
-
 	
 }
