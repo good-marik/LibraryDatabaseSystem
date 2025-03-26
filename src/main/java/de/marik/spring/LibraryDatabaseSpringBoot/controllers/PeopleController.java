@@ -58,7 +58,7 @@ public class PeopleController {
 			return "people/new";
 		}
 		peopleService.save(person);
-		return "redirect:/people";
+		return "redirect:/people?sort=name";
 	}
 
 	@GetMapping("/{id}/edit")

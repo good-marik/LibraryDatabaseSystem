@@ -68,7 +68,7 @@ public class BooksController {
 		if (bindingResult.hasErrors())
 			return "books/new";
 		booksService.save(book);
-		return "redirect:/books";
+		return "redirect:/books?sort=title";
 	}
 
 	@DeleteMapping("/{id}")
