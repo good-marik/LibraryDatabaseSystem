@@ -74,7 +74,7 @@ public class BooksController {
 	@DeleteMapping("/{id}")
 	public String delete(@PathVariable("id") int id) {
 		booksService.delete(id);
-		return "redirect:/books";
+		return "redirect:/books?sort=title";
 	}
 
 	@GetMapping("/{id}/edit")
@@ -89,7 +89,7 @@ public class BooksController {
 		if (bindingResult.hasErrors())
 			return "books/edit";
 		booksService.update(id, book);
-		return "redirect:/books";
+		return "redirect:/books/" + id;
 	}
 
 	@PatchMapping("/{bookId}/assign")

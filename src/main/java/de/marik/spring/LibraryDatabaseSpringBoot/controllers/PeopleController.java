@@ -74,12 +74,12 @@ public class PeopleController {
 		if (bindingResult.hasErrors())
 			return "people/edit";
 		peopleService.update(id, person);
-		return "redirect:/people";
+		return "redirect:/people/" + id;
 	}
 
 	@DeleteMapping("/{id}")
 	public String delete(@PathVariable("id") int id) {
 		peopleService.delete(id);
-		return "redirect:/people";
+		return "redirect:/people?sort=name";
 	}
 }
